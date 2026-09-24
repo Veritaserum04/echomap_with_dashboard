@@ -1,90 +1,60 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
-
-const API = "http://127.0.0.1:8000/api/auth";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem("echomapUser");
+    return saved ? JSON.parse(saved) : null;
+  });
 
-  // ---------------- Load logged-in user ----------------
   useEffect(() => {
-    const token = localStorage.getItem("echomap_token");
+    if (user) {
+      localStorage.setItem("echomapUser", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("echomapUser");
+    }
+  }, [user]);
 
-    if (!token) {
-      setLoading(false);
-      return;
+  const register = (name, email, password) => {
+    const users = JSON.parse(localStorage.getItem("echomapUsers") || "[]");
+
+    const exists = users.find((u) => u.email === email);
+
+    if (exists) {
+      return false;
     }
 
-    axios
-      .get(`${API}/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch(() => {
-        localStorage.removeItem("echomap_token");
-        setUser(null);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    const newUser = { name, email, password };
 
-  // ---------------- Login ----------------
-  async function login(email, password) {
-    const response = await axios.post(`${API}/login`, {
-      email,
-      password,
-    });
+    users.push(newUser);
+    localStorage.setItem("echomapUsers", JSON.stringify(users));
 
-    localStorage.setItem("echomap_token", response.data.access_token);
+    return true;
+  };
 
-    const me = await axios.get(`${API}/me`, {
-      headers: {
-        Authorization: `Bearer ${response.data.access_token}`,
-      },
-    });
+  const login = (email, password) => {
+    const users = JSON.parse(localStorage.getItem("echomapUsers") || "[]");
 
-    setUser(me.data);
-    return me.data;
-  }
+    const foundUser = users.find(
+      (u) => u.email === email && u.password === password
+    );
 
-  // ---------------- Register ----------------
-  async function register(name, email, password) {
-    await axios.post(`${API}/register`, {
-      name,
-      email,
-      password,
-    });
+    if (!foundUser) return false;
 
-    return login(email, password);
-  }
+    setUser(foundUser);
+    return true;
+  };
 
-  // ---------------- Logout ----------------
-  function logout() {
-    localStorage.removeItem("echomap_token");
+  const logout = () => {
     setUser(null);
-  }
+  };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        register,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth = () => useContext(AuthContext);

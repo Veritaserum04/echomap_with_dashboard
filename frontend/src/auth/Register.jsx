@@ -1,120 +1,80 @@
 import { useState } from "react";
-import { User, Mail, Lock, Route } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-
 import { useAuth } from "./AuthContext";
 
 export default function Register() {
-  const { register } = useAuth();
   const navigate = useNavigate();
+  const { register } = useAuth();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [error, setError] = useState("");
-
-  function update(key, value) {
-    setForm((prev) => ({ ...prev, [key]: value }));
-  }
-
-  async function handleRegister(e) {
+  const handleRegister = (e) => {
     e.preventDefault();
 
-    try {
-      await register(form.name, form.email, form.password);
-      navigate("/");
-    } catch {
-      setError("Unable to create account.");
+    const success = register(name, email, password);
+
+    if (success) {
+      alert("Registration successful! Please login.");
+      navigate("/login");
+    } else {
+      alert("An account with this email already exists.");
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 px-5">
+    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white px-4">
+      <div className="w-full max-w-md rounded-3xl border border-cyan-900 bg-slate-900/70 p-8">
+        <h1 className="text-3xl font-bold text-cyan-400 mb-2">Create Account</h1>
 
-      <form
-        onSubmit={handleRegister}
-        className="w-full max-w-md rounded-3xl bg-slate-900 border border-slate-800 p-8 space-y-6"
-      >
-        <div className="text-center">
+        <p className="text-slate-400 mb-8">
+          Register to access the EchoMap dashboard.
+        </p>
 
-          <div className="inline-flex p-4 rounded-2xl bg-cyan-500/20">
-            <Route size={36} className="text-cyan-400" />
-          </div>
+        <form onSubmit={handleRegister} className="space-y-5">
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 outline-none focus:border-cyan-400"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-          <h1 className="text-3xl font-bold text-white mt-5">
-            Create EchoMap Account
-          </h1>
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 outline-none focus:border-cyan-400"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-          <p className="text-slate-400 mt-2">
-            Register your personal dashboard.
-          </p>
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full rounded-xl bg-slate-800 border border-slate-700 px-4 py-3 outline-none focus:border-cyan-400"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-        </div>
+          <button
+            type="submit"
+            className="w-full rounded-xl bg-cyan-500 hover:bg-cyan-400 py-3 font-semibold text-slate-950 transition"
+          >
+            Register
+          </button>
+        </form>
 
-        {error && (
-          <div className="rounded-xl bg-red-500/10 text-red-400 p-3 text-sm">
-            {error}
-          </div>
-        )}
-
-        <Input
-          icon={<User size={18} className="text-slate-500" />}
-          placeholder="Full Name"
-          value={form.name}
-          onChange={(e) => update("name", e.target.value)}
-        />
-
-        <Input
-          icon={<Mail size={18} className="text-slate-500" />}
-          placeholder="Email Address"
-          value={form.email}
-          onChange={(e) => update("email", e.target.value)}
-        />
-
-        <Input
-          icon={<Lock size={18} className="text-slate-500" />}
-          type="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={(e) => update("password", e.target.value)}
-        />
-
-        <button className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 py-3 rounded-xl font-semibold">
-          Register
-        </button>
-
-        <p className="text-center text-slate-400 text-sm">
+        <p className="text-center text-slate-400 mt-6">
           Already have an account?{" "}
-          <Link to="/login" className="text-cyan-400">
+          <Link to="/login" className="text-cyan-400 hover:underline">
             Login
           </Link>
         </p>
-      </form>
-    </div>
-  );
-}
-
-function Input({
-  icon,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-}) {
-  return (
-    <div className="flex items-center bg-slate-950 rounded-xl px-4 border border-slate-700">
-      {icon}
-
-      <input
-        type={type}
-        className="w-full bg-transparent px-3 py-3 outline-none text-white"
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
+      </div>
     </div>
   );
 }
