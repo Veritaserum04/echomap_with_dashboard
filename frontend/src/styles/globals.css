@@ -1,0 +1,2306 @@
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL THEME
+   Part 1 : Theme + Layout + Glass Cards
+========================================================= */
+
+:root{
+  --bg:#020617;
+  --surface:#0F172A;
+  --surface2:#111827;
+  --card:rgba(15,23,42,.72);
+
+  --border:rgba(148,163,184,.08);
+  --border-hover:rgba(34,211,238,.25);
+
+  --cyan:#22D3EE;
+  --blue:#38BDF8;
+  --violet:#A855F7;
+  --green:#22C55E;
+  --orange:#F59E0B;
+  --red:#EF4444;
+
+  --text:#F8FAFC;
+  --muted:#94A3B8;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:linear-gradient(180deg,#020617,#081122);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#07101F;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#1E293B;
+  border-radius:999px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#334155;
+}
+
+/* Main Page */
+
+.page-container{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  padding-bottom:40px;
+  animation:fadeUp .45s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* Glass Cards */
+
+.glass,
+.glass-light,
+.dashboard-section{
+  background:rgba(15,23,42,.70);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:24px;
+  transition:.3s ease;
+}
+
+.glass:hover,
+.glass-light:hover,
+.dashboard-section:hover{
+  border-color:var(--border-hover);
+  box-shadow:0 0 30px rgba(34,211,238,.08);
+}
+
+.panel-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.panel-header p{
+  font-size:12px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  font-weight:700;
+}
+
+.panel-header h2{
+  font-size:22px;
+  margin-top:4px;
+  font-weight:700;
+}
+
+/* Hero Banner */
+
+.hero-banner{
+  position:relative;
+  overflow:hidden;
+
+  padding:28px;
+  border-radius:32px;
+
+  background:
+  linear-gradient(
+      135deg,
+      rgba(8,145,178,.25),
+      rgba(91,33,182,.18)
+    ),
+    rgba(15,23,42,.72);
+
+  border:1px solid rgba(34,211,238,.12);
+}
+
+.hero-banner::before{
+  content:"";
+  position:absolute;
+
+  width:320px;
+  height:320px;
+
+  top:-120px;
+  right:-100px;
+
+  background:rgba(34,211,238,.12);
+  filter:blur(80px);
+}
+
+.hero-banner::after{
+  content:"";
+  position:absolute;
+
+  width:280px;
+  height:280px;
+
+  left:-120px;
+  bottom:-120px;
+
+  background:rgba(168,85,247,.12);
+  filter:blur(80px);
+}
+
+.gradient-title{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL CSS
+   Part 2 : Sidebar + Navbar + Metric Cards + Buttons
+========================================================= */
+
+/* ================= Sidebar ================= */
+
+.sidebar{
+  width:260px;
+  background:rgba(2,6,23,.95);
+  backdrop-filter:blur(18px);
+  border-right:1px solid rgba(148,163,184,.08);
+  padding:24px 18px;
+}
+
+.sidebar-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:36px;
+}
+
+.sidebar-logo img{
+  width:42px;
+  height:42px;
+}
+
+.sidebar-logo h2{
+  font-size:20px;
+  font-weight:700;
+}
+
+.sidebar-logo p{
+  font-size:12px;
+  color:#64748B;
+}
+
+.sidebar-menu{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.sidebar-link{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  padding:14px 16px;
+  border-radius:16px;
+
+  color:#CBD5E1;
+  text-decoration:none;
+  transition:.25s ease;
+}
+
+.sidebar-link svg{
+  width:20px;
+  height:20px;
+}
+
+.sidebar-link:hover{
+  background:rgba(34,211,238,.08);
+  color:#22D3EE;
+}
+
+.sidebar-link.active{
+  background:linear-gradient(
+    90deg,
+    rgba(34,211,238,.18),
+    rgba(168,85,247,.18)
+  );
+
+  color:#22D3EE;
+  border:1px solid rgba(34,211,238,.18);
+}
+
+/* ================= Top Navbar ================= */
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:18px 24px;
+  margin-bottom:28px;
+
+  border-radius:24px;
+  background:rgba(15,23,42,.65);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(148,163,184,.08);
+}
+
+.topbar-title h1{
+  font-size:28px;
+  font-weight:700;
+}
+
+.topbar-title p{
+  color:#94A3B8;
+  margin-top:4px;
+}
+
+.topbar-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.avatar-circle{
+  width:42px;
+  height:42px;
+  border-radius:999px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:linear-gradient(
+    135deg,
+    #22D3EE,
+    #8B5CF6
+  );
+
+  color:white;
+  font-weight:700;
+}
+
+/* ================= KPI / Metric Cards ================= */
+
+.metric-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+}
+
+.metric-card{
+  background:rgba(15,23,42,.65);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(148,163,184,.08);
+
+  padding:22px;
+  border-radius:26px;
+
+  transition:.25s ease;
+}
+
+.metric-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(34,211,238,.2);
+  box-shadow:0 0 25px rgba(34,211,238,.08);
+}
+
+.metric-card-icon{
+  width:52px;
+  height:52px;
+
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(30,41,59,.8);
+}
+
+.metric-card span{
+  display:block;
+
+  margin-top:16px;
+
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.metric-card h3{
+  margin-top:10px;
+  font-size:32px;
+  font-weight:700;
+  color:white;
+}
+
+/* ================= Status Chips ================= */
+
+.status-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:8px 14px;
+
+  border-radius:999px;
+
+  background:rgba(30,41,59,.7);
+
+  font-size:13px;
+  font-weight:600;
+}
+
+.status-online{
+  color:#4ADE80;
+}
+
+.status-offline{
+  color:#F87171;
+}
+
+.status-warning{
+  color:#F59E0B;
+}
+
+/* ================= Buttons ================= */
+
+.primary-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:12px 18px;
+  border:none;
+  border-radius:14px;
+
+  background:linear-gradient(
+    90deg,
+    #22D3EE,
+    #8B5CF6
+  );
+
+  color:white;
+  font-weight:600;
+
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.primary-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(34,211,238,.25);
+}
+
+.secondary-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:12px 18px;
+
+  background:rgba(30,41,59,.8);
+  border:1px solid rgba(148,163,184,.08);
+
+  color:#CBD5E1;
+  border-radius:14px;
+
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+.secondary-btn:hover{
+  border-color:#22D3EE;
+  color:#22D3EE;
+}
+
+/* ================= Progress Bars ================= */
+
+.progress-track{
+  width:100%;
+  height:10px;
+
+  background:#1E293B;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    #22D3EE,
+    #8B5CF6
+  );
+
+  box-shadow:0 0 18px rgba(34,211,238,.35);
+}
+
+/* ================= Small Info Cards ================= */
+
+.info-card{
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(148,163,184,.06);
+  border-radius:22px;
+  padding:18px;
+}
+
+.info-card p{
+  color:#94A3B8;
+  font-size:13px;
+}
+
+.info-card h4{
+  margin-top:10px;
+  font-size:20px;
+  font-weight:700;
+}
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL CSS
+   Part 3 : Overview Page Components
+========================================================= */
+
+/* ===========================
+   Status Cards
+=========================== */
+
+.status-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+
+.status-card{
+  position:relative;
+  overflow:hidden;
+
+  background:rgba(15,23,42,.72);
+  border:1px solid rgba(148,163,184,.08);
+  border-radius:28px;
+
+  padding:22px;
+  transition:.3s ease;
+}
+
+.status-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(34,211,238,.18);
+  box-shadow:0 0 28px rgba(34,211,238,.08);
+}
+
+.status-card::before{
+  content:"";
+  position:absolute;
+  inset:auto -60px -60px auto;
+
+  width:160px;
+  height:160px;
+  border-radius:999px;
+
+  background:rgba(34,211,238,.08);
+  filter:blur(40px);
+}
+
+.status-card-title{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.status-card-value{
+  margin-top:14px;
+  font-size:34px;
+  font-weight:700;
+  color:white;
+}
+
+.status-card-footer{
+  margin-top:16px;
+  color:#64748B;
+  font-size:13px;
+}
+
+/* ===========================
+   Battery Widget
+=========================== */
+
+.battery-widget{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:240px;
+}
+
+.battery-value{
+  font-size:64px;
+  font-weight:700;
+  color:#22C55E;
+  line-height:1;
+}
+
+.battery-time{
+  color:#94A3B8;
+  font-size:14px;
+  margin-top:14px;
+}
+
+.battery-bar{
+  margin-top:20px;
+}
+
+.battery-indicator{
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+
+  color:#64748B;
+  font-size:12px;
+}
+
+/* ===========================
+   Confidence Meter
+=========================== */
+
+.confidence-meter{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:240px;
+}
+
+.confidence-ring{
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+    radial-gradient(circle at center,#0F172A 55%,transparent 56%),
+    conic-gradient(
+      #22D3EE 0deg,
+      #8B5CF6 250deg,
+      #1E293B 250deg
+    );
+}
+
+.confidence-ring::after{
+  content:"";
+  position:absolute;
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  background:#020617;
+}
+
+.confidence-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+
+.confidence-value{
+  font-size:38px;
+  font-weight:700;
+}
+
+.confidence-label{
+  color:#94A3B8;
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* ===========================
+   Connection Widget
+=========================== */
+
+.connection-widget{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  min-height:240px;
+}
+
+.connection-pulse{
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  background:rgba(34,197,94,.12);
+  border:2px solid rgba(34,197,94,.35);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{
+    box-shadow:0 0 0 0 rgba(34,197,94,.45);
+  }
+  70%{
+    box-shadow:0 0 0 22px rgba(34,197,94,0);
+  }
+  100%{
+    box-shadow:0 0 0 0 rgba(34,197,94,0);
+  }
+}
+
+.connection-status{
+  color:#22C55E;
+  font-size:26px;
+  font-weight:700;
+}
+
+.connection-description{
+  color:#94A3B8;
+  text-align:center;
+  font-size:14px;
+}
+
+/* ===========================
+   Active Navigation Banner
+=========================== */
+
+.navigation-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.navigation-box{
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(148,163,184,.08);
+  border-radius:22px;
+  padding:20px;
+}
+
+.navigation-box p{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.navigation-box h3{
+  margin-top:10px;
+  font-size:24px;
+  color:white;
+  font-weight:700;
+}
+
+@media(max-width:768px){
+  .navigation-summary{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===========================
+   Sensor Snapshot
+=========================== */
+
+.sensor-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+}
+
+.sensor-card{
+  background:rgba(15,23,42,.65);
+  border:1px solid rgba(148,163,184,.08);
+  border-radius:22px;
+  padding:20px;
+  transition:.3s ease;
+}
+
+.sensor-card:hover{
+  transform:translateY(-5px);
+  border-color:#22D3EE;
+}
+
+.sensor-card p{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.sensor-card h3{
+  font-size:32px;
+  margin-top:10px;
+  color:#22D3EE;
+}
+
+.sensor-card span{
+  color:#64748B;
+  font-size:14px;
+}
+
+/* ===========================
+   Mode Cards
+=========================== */
+
+.mode-grid{
+  display:grid;
+  gap:18px;
+}
+
+.mode-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:20px;
+  border-radius:22px;
+
+  background:rgba(15,23,42,.65);
+  border:1px solid rgba(148,163,184,.08);
+  transition:.25s ease;
+}
+
+.mode-card:hover{
+  transform:translateY(-4px);
+  border-color:#22D3EE;
+}
+
+.mode-info h3{
+  font-size:18px;
+}
+
+.mode-info p{
+  color:#94A3B8;
+  font-size:13px;
+  margin-top:4px;
+}
+
+.mode-active{
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(34,197,94,.15);
+  color:#4ADE80;
+  font-size:12px;
+}
+
+/* ===========================
+   Active Timeline
+=========================== */
+
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.timeline-item{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.timeline-dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#22D3EE;
+  box-shadow:0 0 10px rgba(34,211,238,.7);
+  margin-top:6px;
+}
+
+.timeline-content{
+  flex:1;
+  border-left:2px solid rgba(34,211,238,.15);
+  padding-left:18px;
+  padding-bottom:20px;
+}
+
+.timeline-content h4{
+  font-size:16px;
+  font-weight:600;
+}
+
+.timeline-content p{
+  color:#94A3B8;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.timeline-time{
+  color:#64748B;
+  font-size:12px;
+  margin-top:8px;
+}
+
+/* ===========================
+   Notification Center
+=========================== */
+
+.notification-list{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.notification-card{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+
+  padding:18px;
+  border-radius:20px;
+
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(148,163,184,.08);
+  transition:.25s ease;
+}
+
+.notification-card:hover{
+  border-color:#22D3EE;
+  transform:translateX(4px);
+}
+
+.notification-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:rgba(34,211,238,.12);
+}
+
+.notification-title{
+  font-weight:600;
+}
+
+.notification-text{
+  color:#94A3B8;
+  font-size:13px;
+  margin-top:4px;
+}
+
+.notification-time{
+  color:#64748B;
+  font-size:12px;
+  margin-top:8px;
+}
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL CSS
+   Part 4 : Mapping + Navigation + Discovery
+========================================================= */
+
+/* ===============================
+   Mapping Layout
+================================ */
+
+.mapping-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:24px;
+  align-items:start;
+}
+
+@media(max-width:1100px){
+  .mapping-layout{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===============================
+   Occupancy Grid
+================================ */
+
+.occupancy-grid{
+  display:grid;
+  grid-template-columns:repeat(20,1fr);
+  gap:4px;
+
+  background:#020617;
+  border:1px solid rgba(34,211,238,.08);
+
+  padding:18px;
+  border-radius:28px;
+
+  width:100%;
+  max-width:620px;
+  margin:auto;
+
+  aspect-ratio:1;
+}
+
+.occupancy-cell{
+  width:100%;
+  aspect-ratio:1;
+  border-radius:4px;
+  transition:.2s ease;
+}
+
+.occupancy-cell:hover{
+  transform:scale(1.15);
+}
+
+.occupancy-cell.empty{
+  background:#1E293B;
+}
+
+.occupancy-cell.path{
+  background:#22D3EE;
+  box-shadow:0 0 8px rgba(34,211,238,.55);
+}
+
+.occupancy-cell.user{
+  background:#22C55E;
+  box-shadow:0 0 10px rgba(34,197,94,.8);
+}
+
+.occupancy-cell.destination{
+  background:#A855F7;
+  box-shadow:0 0 10px rgba(168,85,247,.8);
+}
+
+.occupancy-cell.obstacle{
+  background:#EF4444;
+}
+
+/* ===============================
+   Occupancy Legend
+================================ */
+
+.legend{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:24px;
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#CBD5E1;
+  font-size:13px;
+}
+
+.legend-color{
+  width:14px;
+  height:14px;
+  border-radius:4px;
+}
+
+/* ===============================
+   Mapping Progress Card
+================================ */
+
+.mapping-progress-card{
+  min-height:620px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.mapping-progress-value{
+  text-align:center;
+  font-size:68px;
+  font-weight:800;
+  color:#22D3EE;
+}
+
+.mapping-progress-subtitle{
+  text-align:center;
+  color:#94A3B8;
+  margin-top:8px;
+}
+
+.mapping-status{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:14px 0;
+  border-bottom:1px solid rgba(148,163,184,.08);
+}
+
+.mapping-status:last-child{
+  border-bottom:none;
+}
+
+.mapping-status svg{
+  color:#22C55E;
+}
+
+/* ===============================
+   Landmark Cards
+================================ */
+
+.landmark-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.landmark-card{
+  background:rgba(15,23,42,.65);
+  border:1px solid rgba(51,65,85,.55);
+
+  border-radius:22px;
+  padding:22px;
+
+  transition:.3s ease;
+}
+
+.landmark-card:hover{
+  transform:translateY(-6px);
+  border-color:#22D3EE;
+  box-shadow:0 0 20px rgba(34,211,238,.12);
+}
+
+.landmark-card h3{
+  margin-top:18px;
+  font-size:22px;
+  font-weight:700;
+}
+
+.landmark-card p{
+  margin-top:10px;
+  color:#94A3B8;
+}
+
+.landmark-card h2{
+  margin-top:8px;
+  color:#A855F7;
+  font-size:28px;
+}
+
+.badge-location{
+  background:rgba(34,211,238,.12);
+  color:#67E8F9;
+
+  padding:5px 10px;
+  border-radius:999px;
+
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+/* ===============================
+   Live Compass
+================================ */
+
+.compass-card{
+  text-align:center;
+  position:relative;
+}
+
+.compass-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:28px 0;
+}
+
+.compass-circle{
+  width:240px;
+  height:240px;
+  border-radius:50%;
+
+  border:2px solid rgba(34,211,238,.25);
+
+  position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:radial-gradient(circle,#08111F,#020617);
+}
+
+.compass-circle::before{
+  content:"";
+  position:absolute;
+
+  inset:18px;
+  border-radius:50%;
+  border:1px dashed rgba(34,211,238,.12);
+}
+
+.compass-needle{
+  position:absolute;
+
+  width:6px;
+  height:90px;
+
+  background:linear-gradient(180deg,#22D3EE,#8B5CF6);
+  border-radius:999px;
+
+  transform-origin:bottom center;
+  transition:.4s ease;
+}
+
+.live-center{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#22D3EE;
+  box-shadow:0 0 12px rgba(34,211,238,.6);
+}
+
+.heading-value{
+  font-size:34px;
+  font-weight:700;
+  color:#22D3EE;
+}
+
+.heading-text{
+  color:#94A3B8;
+  margin-top:8px;
+}
+
+.north,.south,.east,.west{
+  position:absolute;
+  font-size:14px;
+  color:#CBD5E1;
+}
+
+.north{ top:16px; left:50%; transform:translateX(-50%);}
+.south{ bottom:16px; left:50%; transform:translateX(-50%);}
+.east{ right:18px; top:50%; transform:translateY(-50%);}
+.west{ left:18px; top:50%; transform:translateY(-50%);}
+
+/* ===============================
+   Navigation Panel
+================================ */
+
+.navigation-panel{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.navigation-step{
+  padding:20px;
+  border-radius:22px;
+
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(34,211,238,.08);
+}
+
+.navigation-step p{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.navigation-step h2{
+  margin-top:10px;
+  font-size:30px;
+  color:#22D3EE;
+}
+
+.navigation-metrics{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.navigation-metric{
+  padding:18px;
+  border-radius:18px;
+  background:#111827;
+}
+
+.navigation-metric p{
+  color:#64748B;
+  font-size:12px;
+}
+
+.navigation-metric h3{
+  margin-top:10px;
+  font-size:24px;
+}
+
+/* ===============================
+   Radar Scanner
+================================ */
+
+.radar-card{
+  position:relative;
+}
+
+.radar-container{
+  display:flex;
+  justify-content:center;
+  padding:20px 0;
+}
+
+.radar-circle{
+  width:290px;
+  height:290px;
+  border-radius:50%;
+  position:relative;
+
+  overflow:hidden;
+
+  background:#020617;
+  border:1px solid rgba(34,211,238,.15);
+}
+
+.radar-ring{
+  position:absolute;
+  border:1px solid rgba(34,211,238,.08);
+  border-radius:50%;
+}
+
+.radar-sweep{
+  position:absolute;
+  inset:0;
+  background:conic-gradient(
+      transparent 0deg,
+      rgba(34,211,238,.18) 25deg,
+      transparent 45deg
+    );
+  animation:spinRadar 4s linear infinite;
+}
+
+@keyframes spinRadar{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+.sensor-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#22D3EE;
+  box-shadow:0 0 15px rgba(34,211,238,.7);
+}
+
+.sensor-value{
+  font-size:11px;
+  color:#67E8F9;
+  margin-top:4px;
+}
+
+/* ===============================
+   Sensor Panel
+================================ */
+
+.sensor-panel-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+}
+
+.sensor-panel-card{
+  background:rgba(15,23,42,.6);
+  border:1px solid rgba(148,163,184,.08);
+
+  padding:20px;
+  border-radius:22px;
+  text-align:center;
+
+  transition:.25s;
+}
+
+.sensor-panel-card:hover{
+  border-color:#22D3EE;
+  transform:translateY(-4px);
+}
+
+.sensor-panel-card h3{
+  margin-top:12px;
+  color:#22D3EE;
+  font-size:34px;
+}
+
+.sensor-panel-card p{
+  margin-top:8px;
+  color:#64748B;
+}
+
+/* ===============================
+   Obstacle Risk Cards
+================================ */
+
+.risk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+}
+
+.risk-card{
+  border-radius:22px;
+  padding:20px;
+  text-align:center;
+}
+
+.risk-low{
+  background:rgba(34,197,94,.08);
+  border:1px solid rgba(34,197,94,.2);
+}
+
+.risk-medium{
+  background:rgba(245,158,11,.08);
+  border:1px solid rgba(245,158,11,.2);
+}
+
+.risk-high{
+  background:rgba(239,68,68,.08);
+  border:1px solid rgba(239,68,68,.2);
+}
+
+.risk-card h2{
+  font-size:34px;
+  margin-top:10px;
+}
+
+.risk-card p{
+  color:#94A3B8;
+}
+
+/* ===============================
+   Scan History
+================================ */
+
+.scan-history{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.scan-history-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:18px;
+  border-radius:20px;
+
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(148,163,184,.08);
+
+  transition:.25s ease;
+}
+
+.scan-history-card:hover{
+  border-color:#22D3EE;
+  transform:translateX(5px);
+}
+
+.scan-history-card h4{
+  font-size:15px;
+}
+
+.scan-history-card p{
+  color:#94A3B8;
+  font-size:13px;
+}
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL CSS
+   Part 5 : Voice Console + Analytics + System Status
+========================================================= */
+
+/* ===============================
+   VOICE CONSOLE PAGE
+================================ */
+
+.voice-layout{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:24px;
+}
+
+@media(max-width:1024px){
+  .voice-layout{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Microphone Card */
+
+.voice-mic-card{
+  text-align:center;
+  min-height:340px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.voice-mic-circle{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:radial-gradient(circle,#0F172A,#020617);
+  border:2px solid rgba(34,211,238,.25);
+
+  position:relative;
+}
+
+.voice-mic-circle::before{
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border-radius:50%;
+  border:1px solid rgba(34,211,238,.18);
+
+  animation:voicePulse 2s infinite;
+}
+
+@keyframes voicePulse{
+  0%{
+    transform:scale(.9);
+    opacity:.8;
+  }
+  70%{
+    transform:scale(1.15);
+    opacity:0;
+  }
+  100%{
+    opacity:0;
+  }
+}
+
+.voice-status{
+  margin-top:22px;
+  color:#22C55E;
+  font-weight:600;
+}
+
+/* Waveform */
+
+.voice-waveform{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:6px;
+  height:70px;
+  margin-top:26px;
+}
+
+.voice-wave-bar{
+  width:8px;
+  border-radius:999px;
+
+  background:linear-gradient(180deg,#22D3EE,#8B5CF6);
+
+  animation:waveBounce 1s infinite ease-in-out;
+}
+
+.voice-wave-bar:nth-child(2){animation-delay:.1s;}
+.voice-wave-bar:nth-child(3){animation-delay:.2s;}
+.voice-wave-bar:nth-child(4){animation-delay:.3s;}
+.voice-wave-bar:nth-child(5){animation-delay:.4s;}
+.voice-wave-bar:nth-child(6){animation-delay:.5s;}
+.voice-wave-bar:nth-child(7){animation-delay:.6s;}
+
+@keyframes waveBounce{
+  0%,100%{height:18px;}
+  50%{height:60px;}
+}
+
+/* Transcript */
+
+.transcript-card{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.transcript-bubble{
+  padding:18px;
+  border-radius:20px;
+  line-height:1.5;
+}
+
+.voice-chat-user{
+  background:rgba(34,211,238,.08);
+  border-left:4px solid #22D3EE;
+}
+
+.voice-chat-assistant{
+  background:rgba(168,85,247,.08);
+  border-left:4px solid #A855F7;
+}
+
+.transcript-time{
+  color:#64748B;
+  font-size:12px;
+  margin-top:8px;
+}
+
+/* Voice History */
+
+.voice-history{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.voice-history-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:18px;
+  border-radius:18px;
+
+  background:rgba(15,23,42,.55);
+  border:1px solid rgba(148,163,184,.08);
+
+  transition:.25s;
+}
+
+.voice-history-item:hover{
+  border-color:#22D3EE;
+  transform:translateX(5px);
+}
+
+/* ===============================
+   ANALYTICS PAGE
+================================ */
+
+.analytics-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+
+.analytics-card{
+  background:rgba(15,23,42,.65);
+  border:1px solid rgba(148,163,184,.08);
+
+  border-radius:24px;
+  padding:22px;
+
+  transition:.3s;
+}
+
+.analytics-card:hover{
+  transform:translateY(-5px);
+  border-color:#22D3EE;
+}
+
+.analytics-card p{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.analytics-card h2{
+  margin-top:12px;
+  font-size:36px;
+  font-weight:700;
+}
+
+/* Summary Cards */
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.summary-card{
+  background:#111827;
+  border-radius:22px;
+  padding:22px;
+}
+
+.summary-card p{
+  color:#64748B;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.summary-card h1{
+  margin-top:14px;
+  font-size:48px;
+  font-weight:700;
+}
+
+/* System Health Bars */
+
+.health-list{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.health-item{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.health-top{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+}
+
+.health-top span:first-child{
+  color:#CBD5E1;
+}
+
+.health-top span:last-child{
+  color:#22D3EE;
+}
+
+/* ===============================
+   SYSTEM STATUS PAGE
+================================ */
+
+.system-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+/* Hardware Cards */
+
+.hardware-card{
+  background:rgba(15,23,42,.65);
+  border:1px solid rgba(148,163,184,.08);
+
+  padding:22px;
+  border-radius:24px;
+
+  transition:.25s;
+}
+
+.hardware-card:hover{
+  border-color:#22D3EE;
+  transform:translateY(-4px);
+}
+
+.hardware-card p{
+  color:#94A3B8;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.hardware-card h2{
+  margin-top:12px;
+  font-size:34px;
+}
+
+/* Module Grid */
+
+.module-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.module-card{
+  background:rgba(15,23,42,.6);
+  border:1px solid rgba(148,163,184,.08);
+
+  padding:20px;
+  border-radius:22px;
+
+  transition:.3s ease;
+}
+
+.module-card:hover{
+  transform:translateY(-5px);
+  border-color:#22D3EE;
+  box-shadow:0 0 22px rgba(34,211,238,.08);
+}
+
+.module-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.module-header h3{
+  font-size:17px;
+  font-weight:600;
+}
+
+.module-status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  margin-top:14px;
+
+  color:#22C55E;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* Diagnostics */
+
+.diagnostic-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.diagnostic-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(148,163,184,.08);
+
+  transition:.2s;
+}
+
+.diagnostic-row:hover{
+  padding-left:8px;
+}
+
+.diagnostic-row span:first-child{
+  color:#94A3B8;
+}
+
+.diagnostic-row span:last-child{
+  color:#22D3EE;
+  font-weight:600;
+}
+
+/* CPU / RAM Circle */
+
+.system-ring{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+    radial-gradient(circle,#020617 58%,transparent 59%),
+    conic-gradient(#22D3EE 70%,#1E293B 70%);
+}
+
+.system-ring-value{
+  font-size:30px;
+  font-weight:700;
+}
+
+/* Raspberry Pi Info */
+
+.pi-info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.pi-info-card{
+  background:#111827;
+  padding:20px;
+  border-radius:20px;
+}
+
+.pi-info-card p{
+  color:#64748B;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.pi-info-card h4{
+  margin-top:10px;
+  font-size:18px;
+}
+/* =========================================================
+   ECHOMAP DASHBOARD — GLOBAL CSS
+   Part 6 : Settings + Responsive + Final Polish
+========================================================= */
+
+/* ===============================
+   SETTINGS PAGE
+================================ */
+
+.settings-grid{
+  display:grid;
+  gap:24px;
+}
+
+.setting-section{
+  background:rgba(15,23,42,.70);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(148,163,184,.08);
+
+  border-radius:28px;
+  padding:24px;
+}
+
+.setting-section:hover{
+  border-color:rgba(34,211,238,.18);
+}
+
+.setting-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:18px 0;
+  border-bottom:1px solid rgba(148,163,184,.08);
+}
+
+.setting-row:last-child{
+  border-bottom:none;
+}
+
+.setting-title{
+  font-size:15px;
+  font-weight:600;
+  color:#F8FAFC;
+}
+
+.setting-subtitle{
+  color:#64748B;
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* Toggle Switch */
+
+.toggle{
+  width:58px;
+  height:30px;
+  border-radius:999px;
+  padding:4px;
+
+  cursor:pointer;
+  transition:.3s ease;
+
+  display:flex;
+  align-items:center;
+}
+
+.toggle-on{
+  background:linear-gradient(90deg,#22D3EE,#8B5CF6);
+}
+
+.toggle-off{
+  background:#334155;
+}
+
+.toggle-dot{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:white;
+  transition:.3s ease;
+}
+
+.toggle-dot-right{
+  transform:translateX(28px);
+}
+
+/* Slider */
+
+.echomap-slider{
+  width:100%;
+  margin-top:10px;
+  accent-color:#22D3EE;
+  cursor:pointer;
+}
+
+.echomap-slider::-webkit-slider-runnable-track{
+  height:8px;
+  border-radius:999px;
+  background:#1E293B;
+}
+
+.echomap-slider::-webkit-slider-thumb{
+  appearance:none;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#22D3EE;
+  margin-top:-5px;
+}
+
+/* Info Rows */
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:14px 0;
+  border-bottom:1px solid rgba(148,163,184,.08);
+}
+
+.info-row:last-child{
+  border-bottom:none;
+}
+
+.info-row span:first-child{
+  color:#94A3B8;
+}
+
+.info-row span:last-child{
+  color:#F8FAFC;
+  font-weight:500;
+}
+
+/* ===============================
+   BADGES
+================================ */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:5px 12px;
+  border-radius:999px;
+
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.badge-cyan{
+  background:rgba(34,211,238,.12);
+  color:#67E8F9;
+}
+
+.badge-green{
+  background:rgba(34,197,94,.12);
+  color:#4ADE80;
+}
+
+.badge-violet{
+  background:rgba(168,85,247,.12);
+  color:#C084FC;
+}
+
+.badge-orange{
+  background:rgba(245,158,11,.12);
+  color:#FBBF24;
+}
+
+.badge-red{
+  background:rgba(239,68,68,.12);
+  color:#F87171;
+}
+
+/* ===============================
+   SEARCH INPUTS
+================================ */
+
+.search-box{
+  width:100%;
+
+  padding:14px 18px;
+
+  border-radius:18px;
+  border:1px solid rgba(148,163,184,.08);
+
+  background:#111827;
+  color:white;
+
+  outline:none;
+}
+
+.search-box::placeholder{
+  color:#64748B;
+}
+
+.search-box:focus{
+  border-color:#22D3EE;
+  box-shadow:0 0 0 4px rgba(34,211,238,.08);
+}
+
+/* ===============================
+   TABLES
+================================ */
+
+.table-card{
+  overflow:auto;
+  border-radius:22px;
+}
+
+.table-card table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table-card th{
+  background:#111827;
+  color:#94A3B8;
+
+  text-align:left;
+  padding:16px;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.table-card td{
+  padding:16px;
+  border-top:1px solid rgba(148,163,184,.08);
+}
+
+.table-card tr:hover{
+  background:rgba(34,211,238,.04);
+}
+
+/* ===============================
+   ICON CONTAINERS
+================================ */
+
+.icon-circle{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(34,211,238,.12);
+}
+
+.icon-circle.green{
+  background:rgba(34,197,94,.12);
+}
+
+.icon-circle.violet{
+  background:rgba(168,85,247,.12);
+}
+
+.icon-circle.orange{
+  background:rgba(245,158,11,.12);
+}
+
+/* ===============================
+   FLOATING GLOW EFFECTS
+================================ */
+
+.glow-cyan{
+  box-shadow:0 0 25px rgba(34,211,238,.18);
+}
+
+.glow-violet{
+  box-shadow:0 0 25px rgba(168,85,247,.18);
+}
+
+.glow-green{
+  box-shadow:0 0 25px rgba(34,197,94,.18);
+}
+
+/* ===============================
+   HOVER ANIMATIONS
+================================ */
+
+.hover-lift{
+  transition:.3s ease;
+}
+
+.hover-lift:hover{
+  transform:translateY(-6px);
+}
+
+.hover-scale{
+  transition:.25s ease;
+}
+
+.hover-scale:hover{
+  transform:scale(1.03);
+}
+
+/* ===============================
+   RESPONSIVE LAYOUT
+================================ */
+
+@media(max-width:1280px){
+
+  .metric-grid,
+  .status-grid,
+  .analytics-grid,
+  .system-grid,
+  .sensor-panel-grid,
+  .landmark-grid,
+  .risk-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:900px){
+
+  .metric-grid,
+  .status-grid,
+  .analytics-grid,
+  .system-grid,
+  .sensor-panel-grid,
+  .landmark-grid,
+  .risk-grid,
+  .summary-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-banner{
+    padding:28px;
+  }
+
+  .hero-banner h1{
+    font-size:36px !important;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .compass-circle{
+    width:190px;
+    height:190px;
+  }
+
+  .radar-circle{
+    width:240px;
+    height:240px;
+  }
+
+  .occupancy-grid{
+    max-width:100%;
+    gap:2px;
+    padding:10px;
+  }
+
+  .mapping-progress-card{
+    min-height:auto;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .page-container{
+    gap:22px;
+  }
+
+  .panel-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .hero-banner{
+    padding:22px;
+    border-radius:24px;
+  }
+
+  .hero-banner h1{
+    font-size:30px !important;
+  }
+
+  .glass,
+  .glass-light,
+  .dashboard-section{
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .metric-card h3,
+  .status-card-value{
+    font-size:28px;
+  }
+
+  .mapping-progress-value{
+    font-size:52px;
+  }
+
+  .battery-value{
+    font-size:52px;
+  }
+
+  .confidence-ring{
+    width:140px;
+    height:140px;
+  }
+
+}
+
+/* ===============================
+   PAGE FADE ANIMATION
+================================ */
+
+.fade-in{
+  animation:fadeUp .5s ease;
+}
+
+.slide-up{
+  animation:slideUp .4s ease;
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* ===============================
+   GLASS DIVIDER
+================================ */
+
+.section-divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(34,211,238,.2),
+    transparent
+  );
+  margin:8px 0 16px;
+}
+.grid-cols-21{
+  display:grid;
+  grid-template-columns:repeat(21,minmax(0,1fr));
+}
