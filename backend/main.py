@@ -1962,9 +1962,13 @@ def main():
             if PI_MODE:
                 press1 = check_btn(BTN_TAG)
                 press2 = check_btn(BTN_CYCLE)
+                press3=check_btn(BTN_NAVIGATE)
             else:
                 press1 = None
                 press2 = None
+            if press3=="long":
+                shutdown(speak)
+                return
 
             # ==========================================
             # Button 1 Long Press → Toggle Modes
